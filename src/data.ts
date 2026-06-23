@@ -5,7 +5,7 @@ import meonPreview from "./assets/images/meOn/dashboard.png";
 import motorlandPreview from "./assets/images/motorland/dashboard.png";
 
 export const PROFILE_DATA = {
-  name: "Antema ANDRIAM",
+  name: "ANDRIAMBELOMANANA Ny Antema Fiderana",
   title: "Developpeur Fullstack",
   subtitle: "Je concois et developpe des applications web modernes, des plateformes SaaS et des solutions integrant l'intelligence artificielle.",
   email: "antema.fy01@gmail.com",

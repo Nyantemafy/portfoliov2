@@ -139,7 +139,7 @@ export default function App() {
               AA
             </span>
             <div className="flex flex-col">
-              <span className="text-sm font-semibold tracking-tight text-gray-950 font-display">Antema ANDRIAM</span>
+              <span className="text-sm font-semibold tracking-tight text-gray-950 font-display">ANDRIAMBELOMANANA Ny Antema Fiderana</span>
               <span className="text-[10px] text-gray-400 font-mono tracking-wider font-semibold uppercase">Portfolio Workspace</span>
             </div>
           </a>
@@ -223,7 +223,7 @@ export default function App() {
               <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-white shadow bg-gray-50 ring-4 ring-indigo-100/50">
                 <img 
                   src={PROFILE_DATA.avatar} 
-                  alt="Antema ANDRIAM - Portrait professionnel" 
+                  alt="ANDRIAMBELOMANANA Ny Antema Fiderana - Portrait professionnel" 
                   className="w-full h-full object-cover scale-102"
                   referrerPolicy="no-referrer"
                 />
@@ -242,7 +242,7 @@ export default function App() {
               </div>
               
               <h1 className="text-3xl md:text-5xl font-extrabold font-display tracking-tight bg-gradient-to-r from-gray-950 via-slate-900 to-indigo-700 bg-clip-text text-transparent pb-0.5">
-                Antema ANDRIAM
+                ANDRIAMBELOMANANA Ny Antema Fiderana
               </h1>
               
               <p className="text-sm md:text-base text-[#6c6767] leading-relaxed max-w-2xl font-light">
@@ -770,7 +770,7 @@ export default function App() {
           </div>
 
           <div className="text-center md:text-right space-y-2 text-xs text-neutral-500 font-mono">
-            <p>© {new Date().getFullYear()} Antema ANDRIAM. Tous droits réservés.</p>
+            <p>© {new Date().getFullYear()} ANDRIAMBELOMANANA Ny Antema Fiderana. Tous droits réservés.</p>
             <p className="text-xxs uppercase">IT University Madagascar • Compliant Premium Design</p>
           </div>
 
@@ -827,7 +827,7 @@ export default function App() {
                 
                 <div className="border-b border-gray-200 pb-4.5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-950 font-display">Antema ANDRIAM</h3>
+                    <h3 className="text-2xl font-bold text-gray-950 font-display">ANDRIAMBELOMANANA Ny Antema Fiderana</h3>
                     <p className="text-sm font-semibold text-gray-600 font-mono tracking-wide">Développeur Fullstack React / Node.js / PostgreSQL</p>
                     <p className="text-xs text-gray-500 mt-1">Étudiant en Licence Informatique - IT University</p>
                   </div>
