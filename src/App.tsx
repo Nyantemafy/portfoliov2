@@ -36,6 +36,7 @@ import {
 
 import { PROFILE_DATA, PROJECTS_DATA, EXPERIENCES_DATA, SKILL_CATEGORIES, WORK_PROCESS_STEPS } from "./data";
 import ProjectGallery from "./components/ProjectGallery";
+import cvPdfUrl from "./assets/cv/AntemaCV.pdf";
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -49,7 +50,7 @@ export default function App() {
   const [formEmail, setFormEmail] = useState("");
   const [formMessage, setFormMessage] = useState("");
   const [formSubmitting, setFormSubmitting] = useState(false);
-  const [savedMessages, setSavedMessages] = useState<any[]>([]);
+  const [contactError, setContactError] = useState("");
 
   // Track scroll progress
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -77,49 +78,38 @@ export default function App() {
     return () => clearInterval(interval);
   }, []);
 
-  // Hydrate recruiter messages from local storage
-  useEffect(() => {
-    const stored = localStorage.getItem("antema_portfolio_messages");
-    if (stored) {
-      try {
-        setSavedMessages(JSON.parse(stored));
-      } catch (err) {
-        console.error(err);
-      }
-    }
-  }, []);
-
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formName || !formEmail || !formMessage) return;
 
     setFormSubmitting(true);
-    setTimeout(() => {
-      const newMsg = {
-        name: formName,
-        email: formEmail,
-        message: formMessage,
-        date: new Date().toLocaleDateString("fr-FR"),
-        time: new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" })
-      };
-      
-      const stored = [...savedMessages, newMsg];
-      setSavedMessages(stored);
-      localStorage.setItem("antema_portfolio_messages", JSON.stringify(stored));
+    setContactError("");
 
-      setFormSubmitting(false);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formName,
+          email: formEmail,
+          message: formMessage,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("contact_api_unavailable");
+      }
+
       setContactSuccess(true);
-      
-      // Clear inputs
       setFormName("");
       setFormEmail("");
       setFormMessage("");
-    }, 1000);
-  };
-
-  const clearMessages = () => {
-    localStorage.removeItem("antema_portfolio_messages");
-    setSavedMessages([]);
+    } catch (err) {
+      console.error(err);
+      setContactError("L'envoi automatique n'est pas disponible sur cette version statique. Utilisez le lien email direct ci-dessous.");
+    } finally {
+      setFormSubmitting(false);
+    }
   };
 
   // Find currently active project in spotlight
@@ -163,16 +153,10 @@ export default function App() {
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Projets
             </a>
             <a href="#workflow" className="hover:text-neutral-950 transition-colors">Processus</a>
-            <a href="#contact" className="hover:text-neutral-950 transition-colors">Contact</a>
           </nav>
 
           {/* Clock + PDF Resume Download */}
           <div className="hidden md:flex items-center gap-4">
-            <div className="bg-gray-100 border border-gray-200/50 rounded-full py-1.5 px-3 flex items-center gap-1.5 font-mono text-xxs text-gray-500 font-medium">
-              <Clock className="w-3.5 h-3.5 text-gray-400" />
-              <span>MAD WORKSTATION :</span>
-              <span className="text-gray-900 font-bold">{utcTime || "13:59"}</span>
-            </div>
             <button 
               onClick={() => setCvModalOpen(true)}
               className="bg-neutral-950 hover:bg-neutral-800 text-white text-xs font-semibold py-2 px-4 rounded-xl transition-all duration-300 shadow-sm flex items-center gap-1.5 cursor-pointer"
@@ -207,7 +191,6 @@ export default function App() {
               <a href="#skills" onClick={() => setMobileMenuOpen(false)} className="hover:text-neutral-950 transition-colors">Compétences</a>
               <a href="#projects" onClick={() => setMobileMenuOpen(false)} className="hover:text-neutral-950 transition-colors">Projets</a>
               <a href="#workflow" onClick={() => setMobileMenuOpen(false)} className="hover:text-neutral-950 transition-colors">Processus</a>
-              <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-neutral-950 transition-colors">Contact</a>
               
               <div className="pt-3 border-t border-gray-150 flex flex-col gap-3">
                 <div className="flex items-center justify-between text-xxs font-mono text-gray-500">
@@ -267,7 +250,7 @@ export default function App() {
               </p>
 
               <p className="text-xs text-gray-400">
-                Basé à <span className="font-semibold text-gray-600">Paris / Antananarivo</span> • Rigoureux d'esprit, autonome et passionné d'architecture modulaire et d'intelligence artificielle.
+                Basé à <span className="font-semibold text-gray-600">Antananarivo</span> • Rigoureux d'esprit, autonome et passionné d'architecture modulaire et d'intelligence artificielle.
               </p>
             </div>
           </div>
@@ -281,7 +264,7 @@ export default function App() {
               <span>Curriculum Vitae (PDF)</span>
             </button>
             <a
-              href="#contact"
+              href={`mailto:${PROFILE_DATA.email}`}
               className="bg-gradient-to-r from-neutral-950 to-indigo-950 hover:from-indigo-950 hover:to-neutral-950 text-white font-semibold text-xs py-3 px-5 rounded-2xl transition-all shadow-md text-center flex items-center justify-center gap-2 cursor-pointer w-full"
             >
               <Mail className="w-4 h-4 text-gray-300" />
@@ -655,7 +638,7 @@ export default function App() {
         </div>
 
         {/* BOTTOM SECTION 2: RECIPROCATING INTERACTIVE CONTACT MODULE */}
-        <div id="contact" className="max-w-4xl mx-auto w-full">
+        <div className="hidden">
           
           {/* Email form portion */}
           <div className="bg-white rounded-3xl border border-gray-100/80 p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.015)] space-y-6">
@@ -694,6 +677,18 @@ export default function App() {
               </motion.div>
             ) : (
               <form onSubmit={handleContactSubmit} className="space-y-4.5">
+                {contactError && (
+                  <div className="bg-amber-50 border border-amber-100 text-amber-900 rounded-2xl p-4 text-xs leading-relaxed">
+                    <p className="font-semibold">{contactError}</p>
+                    <a
+                      href={`mailto:${PROFILE_DATA.email}?subject=${encodeURIComponent("Contact depuis le portfolio")}&body=${encodeURIComponent(`Bonjour Antema,\n\n${formMessage}\n\nNom / entreprise : ${formName}\nEmail : ${formEmail}`)}`}
+                      className="inline-flex items-center gap-1.5 mt-2 font-bold text-amber-950 underline"
+                    >
+                      Ouvrir mon client email
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                )}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1">
                     <label className="text-[10px] uppercase font-mono tracking-widest text-gray-400 block font-bold">Votre nom / Entreprise</label>
@@ -801,14 +796,15 @@ export default function App() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <button 
-                    onClick={() => window.print()}
+                  <a
+                    href={cvPdfUrl}
+                    download="AntemaCV.pdf"
                     className="p-1.5 hover:bg-neutral-800 text-gray-300 hover:text-white rounded-lg text-xs flex items-center gap-1.5 font-mono cursor-pointer"
-                    title="Imprimer ou enregistrer en PDF"
+                    title="Telecharger le CV PDF"
                   >
-                    <Printer className="w-4 h-4" />
-                    <span className="hidden sm:inline">Imprimer</span>
-                  </button>
+                    <Download className="w-4 h-4" />
+                    <span className="hidden sm:inline">Telecharger</span>
+                  </a>
                   <button 
                     onClick={() => setCvModalOpen(false)}
                     className="p-1 hover:bg-neutral-800 rounded-md cursor-pointer"
@@ -818,8 +814,16 @@ export default function App() {
                 </div>
               </div>
 
+              <div className="grow min-h-[70vh] bg-gray-100">
+                <iframe
+                  src={cvPdfUrl}
+                  title="CV Antema ANDRIAM"
+                  className="w-full h-[70vh] bg-white"
+                />
+              </div>
+
               {/* CV Printable details */}
-              <div className="p-8 overflow-y-auto grow space-y-6 printable-cv bg-white selection:bg-neutral-900 selection:text-white">
+              <div className="hidden p-8 overflow-y-auto grow space-y-6 printable-cv bg-white selection:bg-neutral-900 selection:text-white">
                 
                 <div className="border-b border-gray-200 pb-4.5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                   <div>

@@ -1,172 +1,178 @@
 import { Project, Experience, SkillCategory } from "./types";
+import profileImage from "./assets/images/antema_profile_pic_1782162044773.jpg";
+import cuaPreview from "./assets/images/cua/control_panneau.jpeg";
+import meonPreview from "./assets/images/meOn/dashboard.png";
+import motorlandPreview from "./assets/images/motorland/dashboard.png";
 
 export const PROFILE_DATA = {
   name: "Antema ANDRIAM",
-  title: "Développeur Fullstack",
-  subtitle: "Je conçois et développe des applications web modernes, des plateformes SaaS et des solutions intégrant l'intelligence artificielle.",
+  title: "Developpeur Fullstack",
+  subtitle: "Je concois et developpe des applications web modernes, des plateformes SaaS et des solutions integrant l'intelligence artificielle.",
   email: "antema.fy01@gmail.com",
-  phone: "+261 34 83 234 11", // Standard Malagasy format placeholder
-  github: "https://github.com/Antema-Andriam",
-  linkedin: "https://linkedin.com/in/antema-andriam",
-  avatar: "/src/assets/images/antema_profile_pic_1782162044773.jpg", // Note: mapped from generation
-  itUniversityUrl: "https://www.it-university.mg",
+  phone: "+261 38 58 278 75",
+  github: "https://github.com/Nyantemafy",
+  linkedin: "https://www.linkedin.com/in/ny-antema-fiderana-andriambelomanana-872414349",
+  avatar: profileImage,
+  itUniversityUrl: "https://www.ituniversity-mg.com/page",
 };
 
 export const PROJECTS_DATA: Project[] = [
   {
     id: "meon",
     title: "ME.ON",
-    subtitle: "Plateforme collaborative étudiante intelligente",
-    description: "Plateforme collaborative étudiante intégrant entraide, événements, projets collaboratifs, quiz, gamification et intelligence artificielle.",
+    subtitle: "Plateforme collaborative etudiante intelligente",
+    description: "Plateforme collaborative etudiante integrant entraide, evenements, projets collaboratifs, quiz, gamification et intelligence artificielle.",
     technologies: ["React", "NestJS", "PostgreSQL", "Tailwind CSS", "WebRTC"],
     features: [
-      "Système de quiz interactifs générés par IA avec gamification et badges",
-      "Salles d'études virtuelles et salons d'entraide vocaux en temps réel via WebRTC",
-      "Espace de travail agile collaboratif avec tableaux de tâches (Kanban) pour travaux de groupe",
-      "Chat d'assistance intelligent connecté basé sur les cours partagés par les étudiants"
+      "Systeme de quiz interactifs generes par IA avec gamification et badges",
+      "Salles d'etudes virtuelles et salons d'entraide vocaux en temps reel via WebRTC",
+      "Espace de travail agile collaboratif avec tableaux de taches Kanban pour travaux de groupe",
+      "Chat d'assistance intelligent connecte aux cours partages par les etudiants",
     ],
-    role: "Développeur Fullstack Lead & Architecte initial. Responsable de la mise en place de la structure WebRTC et de l'architecture des modules IA.",
-    challenges: "La complexité venait de la synchronisation de l'état général des salons d'entraide multi-utilisateurs et de la gestion de la bande passante avec WebRTC pour éviter la latence audio/vidéo.",
-    results: "Adoption immédiate par plus de 350 étudiants de notre promotion, divisant par deux le temps d'organisation des projets de groupe.",
-    image: "/src/assets/images/collab_preview_1782162060474.jpg"
+    role: "Developpeur Fullstack Lead et architecte initial. Responsable de la structure WebRTC et de l'architecture des modules IA.",
+    challenges: "La difficulte principale venait de la synchronisation des salons d'entraide multi-utilisateurs et de la gestion de la bande passante WebRTC.",
+    results: "Adoption immediate par plus de 350 etudiants de la promotion, avec un temps d'organisation des projets de groupe divise par deux.",
+    image: meonPreview,
   },
   {
     id: "motorland",
     title: "MOTORLAND ERP",
-    subtitle: "ERP industriel connecté",
-    description: "Conception et développement d'un ERP métier complet et hautement performant destiné à optimiser les processus de gestion commerciale et logistique.",
+    subtitle: "ERP industriel connecte",
+    description: "Conception et developpement d'un ERP metier complet destine a optimiser les processus de gestion commerciale et logistique.",
     technologies: ["React", "Node.js", "PostgreSQL", "Nginx", "Linux"],
     features: [
-      "Suivi des commandes, flux de trésorerie, facturation automatique certifiée et export PDF",
-      "Gestion d'inventaire dynamique en temps réel avec notifications de seuil d'alerte",
-      "Tableau de bord de rentabilité financière et rapports analytiques automatiques",
-      "Planification optimisée des équipes et des ressources matérielles"
+      "Suivi des commandes, tresorerie, facturation automatique et export PDF",
+      "Gestion d'inventaire dynamique avec notifications de seuil d'alerte",
+      "Tableau de bord de rentabilite financiere et rapports analytiques",
+      "Planification optimisee des equipes et des ressources materielles",
     ],
-    role: "Développeur Fullstack Freelance Unique. Analyse des besoins métiers, conception de la base de données PostgreSQL, implémentation des API REST et déploiement complet sur VPS sous Linux.",
-    challenges: "La migration à chaud sans interruption de service d'une ancienne base de données Excel fragmentée vers une structure relationnelle robuste sans perte d'historique de facturation.",
-    results: "Un outil métier opérationnel 24/7 adoptant les standards de sécurité, qui a réduit de 35% le temps de gestion administrative hebdomadaire.",
-    image: "/src/assets/images/erp_preview_1782162073141.jpg"
+    role: "Developpeur Fullstack Freelance unique. Analyse des besoins metiers, conception PostgreSQL, API REST et deploiement complet sur VPS Linux.",
+    challenges: "Migrer une ancienne base Excel fragmentee vers une structure relationnelle robuste sans perte d'historique de facturation.",
+    results: "Outil metier operationnel 24/7 qui reduit de 35% le temps de gestion administrative hebdomadaire.",
+    image: motorlandPreview,
   },
   {
     id: "cua",
     title: "GESTION DES PANNEAUX CUA",
-    subtitle: "Système de géolocalisation et cadastre public",
-    description: "Application web métier haute performance permettant la gestion, le suivi fiscal et la cartographie géolocalisée des panneaux publicitaires de la ville d'Antananarivo.",
-    technologies: ["React", "Node.js", "PostgreSQL", "Leaflet"],
+    subtitle: "Geolocalisation, cadastre public et versions mobile/desktop",
+    description: "Application metier de gestion, suivi fiscal et cartographie geolocalisee des panneaux publicitaires d'Antananarivo. Le projet comprend une version mobile React Expo livree en APK et une version desktop executable (.exe).",
+    technologies: ["React", "React Expo", "APK mobile", "EXE desktop", "Node.js", "PostgreSQL", "Leaflet"],
     features: [
-      "Cartographie interactive en temps réel de tous les mobiliers publicitaires municipaux",
-      "Gestionnaire financier de redevances fiscales publicitaires et suivi des renouvellements",
-      "Module d'inspection d'infractions sur le terrain avec fiches d'avis de conformité",
-      "Architecture sécurisée multi-comptes avec droits administratifs granulaires"
+      "Cartographie interactive en temps reel des mobiliers publicitaires municipaux",
+      "Gestion des redevances fiscales publicitaires et suivi des renouvellements",
+      "Module terrain d'inspection des infractions avec fiches de conformite",
+      "Versions mobile React Expo APK et desktop executable pour les agents CUA",
     ],
-    role: "Prestataire Développeur principal. Développement complet de l'interface utilisateur géographique réactive et configuration du système de requête géospatiale relationnelle.",
-    challenges: "Manipuler des données de géolocalisation imprécises et hétérogènes initialement fournies dans des formats et projections discordants afin de les projeter précisément sur la carte d'Antananarivo.",
-    results: "Processus administratifs entièrement numérisés, augmentation mesurée de 50% de la productivité des contrôleurs municipaux lors des tournées d'inspection physique.",
-    image: "/src/assets/images/billboard_preview_1782162087938.jpg"
-  }
+    role: "Prestataire developpeur principal. Developpement de l'interface geographique, de la version mobile React Expo (.apk), de la version desktop executable (.exe) et des requetes geospatiales.",
+    challenges: "Uniformiser des donnees de geolocalisation heterogenes pour les projeter correctement sur la carte d'Antananarivo.",
+    results: "Processus administratifs numerises et productivite des controleurs municipaux augmentee de 50% lors des tournees d'inspection.",
+    image: cuaPreview,
+  },
 ];
 
 export const EXPERIENCES_DATA: Experience[] = [
   {
-    company: "JO DESIGNS – BRANDING & DIGITAL",
-    role: "Développeur Fullstack Stagiaire",
-    period: "Janvier 2026 – Présent",
-    description: "Participation clé au cycle de vie complet de Me.On, la plateforme collaborative étudiante de premier plan.",
+    company: "JO DESIGNS - BRANDING & DIGITAL",
+    role: "Developpeur Fullstack Stagiaire",
+    period: "Janvier 2026 - Present",
+    description: "Participation au cycle de vie complet de Me.On, plateforme collaborative etudiante.",
     responsibilities: [
-      "Développement de composants Frontend fluides et réactifs avec React et Tailwind CSS.",
-      "Développement robuste du Backend NestJS garantissant une scalabilité horizontale optimale.",
-      "Modélisation et optimisation des requêtes de la base de données PostgreSQL.",
-      "Conception et intégration d'APIs REST modulaires et de protocoles WebRTC temps réel.",
-      "Implémentation de fonctionnalités d'IA (synthèse de cours, génération de quiz de révision).",
-      "Collaboration étroite avec le chef de produit pour aligner l'architecture et les besoins utilisateurs."
+      "Developpement de composants frontend reactifs avec React et Tailwind CSS.",
+      "Developpement backend NestJS avec une architecture modulaire et scalable.",
+      "Modelisation et optimisation des requetes PostgreSQL.",
+      "Integration d'APIs REST et de protocoles WebRTC temps reel.",
+      "Implementation de fonctionnalites IA pour synthese de cours et generation de quiz.",
+      "Collaboration avec le chef de produit pour aligner architecture et besoins utilisateurs.",
     ],
-    technologies: ["React", "NestJS", "PostgreSQL", "Tailwind CSS", "WebRTC", "OpenAI API"]
+    technologies: ["React", "NestJS", "PostgreSQL", "Tailwind CSS", "WebRTC", "OpenAI API"],
   },
   {
     company: "MOTORLAND ERP",
-    role: "Développeur Fullstack Freelance",
-    period: "Février 2026 – Mai 2026",
-    description: "Conception, développement complet de bout en bout et déploiement en production d'un ERP métier complet.",
+    role: "Developpeur Fullstack Freelance",
+    period: "Fevrier 2026 - Mai 2026",
+    description: "Conception, developpement et deploiement en production d'un ERP metier complet.",
     responsibilities: [
-      "Analyse rigoureuse des besoins opérationnels et modélisation des processus de facturation et de workflow.",
-      "Architecture globale de l'application : Base de données PostgreSQL relationnelle indexée.",
-      "Développement d'un serveur REST performant et sécurisé avec Express.js et Node.js.",
-      "Intégration d'un client React ultra-fluide avec conception soignée des tableaux de bord.",
-      "Déploiement final sur VPS Linux avec gestionnaire de processus PM2 et serveur Mandataire Nginx."
+      "Analyse des besoins operationnels et modelisation des processus de facturation.",
+      "Architecture de la base de donnees PostgreSQL relationnelle indexee.",
+      "Developpement d'un serveur REST performant avec Express.js et Node.js.",
+      "Integration d'un client React fluide avec tableaux de bord metier.",
+      "Deploiement sur VPS Linux avec PM2 et Nginx.",
     ],
-    technologies: ["React", "Node.js", "Express", "PostgreSQL", "Nginx", "Linux VPS", "PM2"]
+    technologies: ["React", "Node.js", "Express", "PostgreSQL", "Nginx", "Linux VPS", "PM2"],
   },
   {
     company: "COMMUNE URBAINE D'ANTANANARIVO (CUA)",
-    role: "Prestataire Développeur",
-    period: "Juillet 2025 – Janvier 2026",
-    description: "Développement d'une application web de gestion des panneaux publicitaires de la ville d'Antananarivo.",
+    role: "Prestataire Developpeur",
+    period: "Juillet 2025 - Janvier 2026",
+    description: "Developpement d'une solution de gestion des panneaux publicitaires, avec version mobile React Expo APK et version desktop executable.",
     responsibilities: [
-      "Conception d'une interface utilisateur axée sur la cartographie et l'interactivité pour visualiser les zones.",
-      "Mise en place du backend Node.js gérant des requêtes complexes de filtrage par arrondissements.",
-      "Structuration d'une base de données PostgreSQL gérant les métadonnées géographiques et de paiement.",
-      "Rédaction de la documentation de maintenance et transfert de compétences pour les équipes techniques internes."
+      "Conception d'une interface cartographique interactive pour visualiser les zones.",
+      "Adaptation de la solution en application mobile React Expo avec livraison APK.",
+      "Preparation d'une version desktop executable pour les postes administratifs.",
+      "Mise en place du backend Node.js pour les requetes par arrondissements.",
+      "Structuration d'une base PostgreSQL pour les metadonnees geographiques et paiements.",
+      "Documentation de maintenance et transfert de competences aux equipes techniques.",
     ],
-    technologies: ["React", "Node.js", "Express", "PostgreSQL", "Leaflet", "GeoJSON"]
-  }
+    technologies: ["React", "React Expo", "APK", "EXE", "Node.js", "Express", "PostgreSQL", "Leaflet", "GeoJSON"],
+  },
 ];
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     title: "Frontend",
-    skills: ["React", "Next.js", "TypeScript", "JavaScript", "HTML5", "CSS3", "Tailwind CSS"]
+    skills: ["React", "Next.js", "TypeScript", "JavaScript", "HTML5", "CSS3", "Tailwind CSS"],
   },
   {
     title: "Backend",
-    skills: ["Node.js", "NestJS", "Express.js", "APIs REST"]
+    skills: ["Node.js", "NestJS", "Express.js", "APIs REST"],
   },
   {
-    title: "Base de données",
-    skills: ["PostgreSQL", "MySQL"]
+    title: "Base de donnees",
+    skills: ["PostgreSQL", "MySQL"],
   },
   {
     title: "Infrastructure",
-    skills: ["Linux", "Nginx", "VPS", "Docker", "Git", "GitHub"]
+    skills: ["Linux", "Nginx", "VPS", "Docker", "Git", "GitHub"],
   },
   {
     title: "IA & Automatisation",
-    skills: ["Intégration APIs IA", "Groq", "OpenAI", "Automatisation de processus"]
+    skills: ["Integration APIs IA", "Groq", "OpenAI", "Automatisation de processus"],
   },
   {
     title: "Soft Skills",
-    skills: ["Autonomie", "Communication", "Organisation", "Travail en équipe", "Résolution de problèmes", "Apprentissage rapide"]
-  }
+    skills: ["Autonomie", "Communication", "Organisation", "Travail en equipe", "Resolution de problemes", "Apprentissage rapide"],
+  },
 ];
 
 export const WORK_PROCESS_STEPS = [
   {
     step: "01",
     title: "Analyse du besoin",
-    description: "Compréhension approfondie et modélisation des besoins utilisateurs, rédaction des spécifications techniques et fonctionnelles."
+    description: "Comprehension approfondie des besoins utilisateurs, redaction des specifications techniques et fonctionnelles.",
   },
   {
     step: "02",
     title: "Conception de la solution",
-    description: "Modélisation de la base de données relationnelle PostgreSQL, architecture système et wireframing de l'expérience utilisateur complète."
+    description: "Modelisation de la base de donnees, architecture systeme et wireframing de l'experience utilisateur.",
   },
   {
     step: "03",
-    title: "Développement Frontend",
-    description: "Création d'interfaces fluides sous React ou Next.js avec Tailwind CSS, en accordant un soin extrême aux performances et à l'ergonomie."
+    title: "Developpement Frontend",
+    description: "Creation d'interfaces fluides sous React ou Next.js avec Tailwind CSS, en priorisant performance et ergonomie.",
   },
   {
     step: "04",
-    title: "Développement Backend",
-    description: "Mise en place de l'API REST sous NestJS ou Node.js, sécurisation des endpoints, gestion de la logique d'affaires et de l'intégration IA."
+    title: "Developpement Backend",
+    description: "Mise en place d'APIs REST sous NestJS ou Node.js, securisation des endpoints et integration IA.",
   },
   {
     step: "05",
     title: "Tests",
-    description: "Phase rigoureuse de tests unitaires, d'intégration des API et validation finale de l'UX pour garantir une robustesse à 100%."
+    description: "Tests unitaires, integration API et validation finale de l'UX pour garantir une solution robuste.",
   },
   {
     step: "06",
-    title: "Déploiement",
-    description: "Mise en production sur VPS Linux sécurisé, configuration de Nginx pour le reverse proxy, gestion de l'automatisation et du monitoring."
-  }
+    title: "Deploiement",
+    description: "Mise en production sur VPS Linux, configuration Nginx, automatisation et monitoring.",
+  },
 ];
